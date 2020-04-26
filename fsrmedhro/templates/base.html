@@ -1,0 +1,67 @@
+{% load static cms_tags sekizai_tags %}
+{% load menu_tags %}
+<!doctype html>
+<style type="text/css">
+    
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: #ffffff !important;
+}
+nav .navbar-nav li a{
+  color: white !important;
+  }
+</style>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+ 
+    <a class="navbar-brand" href="#">
+           <img src="{% static "img/logo.png" %}" style="width: 200px;height: 100px">
+         </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+     <div class="collapse navbar-collapse" id="navbarNav">
+<ul class="nav navbar-nav">
+  {% show_menu 0 100 100 100  "menu.html" %}
+</ul>
+</div>
+</nav>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    {% render_block "css" %}
+
+    {% block stylesheets %}
+    {% endblock %}
+
+    <title>{% block title %}{% endblock %}</title>
+{% show_breadcrumb %}
+  </head>
+  <body>
+    <main role="main" class="container-fluid">
+    {% cms_toolbar %}
+
+    <h3>Hello, is this working?</h3>
+
+    {% block content %}
+    {% placeholder "content" %}
+    {% endblock %}
+    </main>
+
+    <script src="{% static "js/jquery-3.4.1.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
+
+    {% block javascript %}
+    {% endblock %}
+
+    {% render_block "js" %}
+
+  </body>
+  <footer  style="border: 3px black dashed">
+    footer
+  {% static_placeholder 'footer' %}
+</footer>
+</html>
